@@ -8,4 +8,4 @@ local dlg = dialog.new{x = 0,
 		       width = 500,
 		       height = 100}
 
-print(dump(dlg))
+dump(dlg)

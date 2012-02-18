@@ -73,7 +73,7 @@ for _,lib in pairs{'_G', 'string', 'table', 'math',
   end
 end
 
-function dump(value, varname, fastmode, ident)
+local function DataDumper(value, varname, fastmode, ident)
   local defined, dumplua = {}
   -- Local variables for speed optimization
   local string_format, type, string_dump, string_rep = 
@@ -226,4 +226,8 @@ function dump(value, varname, fastmode, ident)
     end
     return table.concat(items)
   end
+end
+
+function dump(value, varname, fastmode, ident)
+   print(DataDumper(value, varname, fastmode, ident))
 end
