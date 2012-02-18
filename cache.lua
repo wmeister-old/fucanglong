@@ -17,12 +17,8 @@ function cache(key, value)
    return _cache[key]
 end
 
-function res(name)
-   return "res/"..name
-end
-
 function cache_image(name)
-   local key = res(name)
+   local key = Path.resource(name)
 
    if is_cached(key) then
       return cache(key)
