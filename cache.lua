@@ -1,8 +1,7 @@
-module(...., package.seeall)
-
+module(..., package.seeall) -- TODO is this a module a good idea?
 local _cache = {}
 
-function is_cached(key)
+local function is_cached(key)
    if _cache[key] then
       return true
    else
@@ -10,21 +9,27 @@ function is_cached(key)
    end
 end
 
-function cache(key, value)
+local function cache(key, value)
    if value then
       _cache[key] = value
    end
    return _cache[key]
 end
 
-function cache_image(name)
-   if is_cached(key) then
-      return cache(key)
-   else
-      return cache(key, love.graphics.newImage(key))
+local function cache_(fn)
+   return function(key)
+      if is_cached(key) then
+	 return cache(key)
+      else
+	 return cache(key, fn(key))
+      end
    end
 end
 
-function cache_texture(name)
-   return cache_image(path.texture(name))
-end
+png = cache_(function(name)
+   return love.graphics.newImage(path.png(name))
+end)
+
+texture = cache_(function(name)
+   return love.graphics.newImage((path.texture(name))
+end)
