@@ -6,7 +6,7 @@ end
 
 local function _font(ext)
    return function(name)
-      resource("font/"..name.."."..ext)
+      return resource("font/"..name.."."..ext)
    end
 end
 

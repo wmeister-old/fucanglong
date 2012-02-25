@@ -1,7 +1,7 @@
 module(..., package.seeall)
 
 -- TODO need border color
-new = base_object.constructor("dialog", {"x", "y", "width", "height", "texture?", "border?", "bgcolor?", "color?", "text?", "visible?"},
+new = base_table.constructor("dialog", {"x", "y", "width", "height", "texture?", "border?", "bgcolor?", "color?", "text?", "visible?"},
                                         {bgcolor = colors.BLUE, color = colors.WHITE, visible = true})
 
 function draw(dlg)
@@ -30,4 +30,6 @@ function draw(dlg)
    draw_solid_rectangle(colors.DARK_GREY, dlg.x+1, dlg.y+1, dlg.width-2, dlg.height-2)
    draw_solid_rectangle(colors.LIGHT_GREY, dlg.x+2, dlg.y+2, dlg.width-4, dlg.height-4)
    draw_solid_rectangle(colors.BLACK, dlg.x+3, dlg.y+3, dlg.width-6, dlg.height-6)
+   love.graphics.setColor(dlg.color)
+   love.graphics.printf(dlg.text, 6, 6, dlg.width-15)
 end

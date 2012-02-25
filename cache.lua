@@ -16,20 +16,38 @@ local function cache(key, value)
    return _cache[key]
 end
 
-local function cache_(fn)
-   return function(key)
-      if is_cached(key) then
-	 return cache(key)
-      else
-	 return cache(key, fn(key))
-      end
+function png(name)
+   name = path.png(name)
+
+   if is_cached(name) then
+      return cache(name)
    end
+   return cache(name, love.graphics.newImage(name))
 end
 
-png = cache_(function(name)
-   return love.graphics.newImage(path.png(name))
-end)
+function texture(name)
+   name = path.texture(name)
 
-texture = cache_(function(name)
-   return love.graphics.newImage((path.texture(name))
-end)
+   if is_cached(name) then
+      return cache(name)
+   end
+   return cache(name, love.graphics.newImage(name))
+end
+
+function fon(name, size)
+   name = path.font.fon(name)
+
+   if is_cached(name) then
+      return cache(name)
+   end
+   return cache(name, love.graphics.newFont(name, size))
+end
+
+function ttf(name, size)
+   name = path.font.ttf(name)
+
+   if is_cached(name) then
+      return cache(name)
+   end
+   return cache(name, love.graphics.newFont(name, size))
+end
