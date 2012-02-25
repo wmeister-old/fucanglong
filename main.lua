@@ -2,8 +2,9 @@ dofile("dumper.lua")
 dofile("table.lua")
 require("cache")
 require("path")
+require("scissor")
 require("colors")
-require("base_table") -- TODO rename: base_table
+require("base_table")
 require("dialog")
 
 function love.load()
@@ -13,9 +14,9 @@ function love.load()
 
    dlg = dialog.new{x = 0,
 		    y = 1,
-		    width = 513,
-		    height = 100,
-		    text = "Welcome to a new age! This is the world of Fucanglong and you are about to start your journey... Get ready for the experience of a life time!"}
+		    width = love.graphics.getWidth(),
+		    height = 102,
+		    text = "Welcome to a new age! This is the world of Fucanglong and you are about to starz your journey... Get ready for the experience of a life time! Welcome to a new age! This is the world of Fucanglong and you are about to start your journey... Get ready for the experience of a life time! Welcome to a new age! This is the world of Fucanglong and you are about to start your journey... Get ready for the experience of a life time! abcd END."}
 
    print("dumping dlg:")
    dump(dlg)

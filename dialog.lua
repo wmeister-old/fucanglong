@@ -1,8 +1,7 @@
 module(..., package.seeall)
 
--- TODO need border color
-new = base_table.constructor("dialog", {"x", "y", "width", "height", "texture?", "border?", "bgcolor?", "color?", "text?", "visible?"},
-                                        {bgcolor = colors.BLUE, color = colors.WHITE, visible = true})
+new = base_table.constructor("dialog", {"x", "y", "width", "height", "texture?", "bgcolor?", "color?", "text?", "visible?"},
+                                       {bgcolor = colors.BLUE, color = colors.WHITE, visible = true})
 
 function draw(dlg)
    -- TODO move these into rectangle.lua
@@ -22,14 +21,19 @@ function draw(dlg)
       end
       -- TODO draw the texture
    else
-      -- TODO draw a rectangle filled w/ bgcolor
       draw_filled_rectangle(dlg.bgcolor, dlg.x+4, dlg.y+4, dlg.width-8, dlg.height-8)
    end
-
+   -- draw the border
    draw_solid_rectangle(colors.BLACK, dlg.x, dlg.y, dlg.width, dlg.height)
    draw_solid_rectangle(colors.DARK_GREY, dlg.x+1, dlg.y+1, dlg.width-2, dlg.height-2)
    draw_solid_rectangle(colors.LIGHT_GREY, dlg.x+2, dlg.y+2, dlg.width-4, dlg.height-4)
    draw_solid_rectangle(colors.BLACK, dlg.x+3, dlg.y+3, dlg.width-6, dlg.height-6)
+
+   -- draw the text
+   local padding = 6
+
    love.graphics.setColor(dlg.color)
-   love.graphics.printf(dlg.text, 6, 6, dlg.width-15)
+   scissor.set(dlg.x, dlg.y, dlg.width-padding, dlg.height-padding)
+   love.graphics.printf(dlg.text, dlg.x+padding, dlg.y+padding, dlg.width-padding)
+   scissor.reset()
 end
