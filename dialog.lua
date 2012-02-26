@@ -1,7 +1,14 @@
 module(..., package.seeall)
 
-new = base_table.constructor("dialog", {"x", "y", "width", "height", "texture?", "bgcolor?", "color?", "text?", "visible?"},
-                                       {bgcolor = colors.BLUE, color = colors.WHITE, visible = true})
+padding = 6
+border_size = 4
+new = base_table.constructor("dialog", {"width", "height", "texture?", "bgcolor?", "color?", "text?"},
+                                       {bgcolor = colors.BLUE, color = colors.WHITE, visible = true},
+			               entity.prototype)
+
+function lines_to_height(x)
+   return text.lines_to_height(x)+((dialog.padding+dialog.border_size)*1.4)
+end
 
 function draw(dlg)
    -- TODO move these into rectangle.lua
@@ -30,8 +37,6 @@ function draw(dlg)
    draw_solid_rectangle(colors.BLACK, dlg.x+3, dlg.y+3, dlg.width-6, dlg.height-6)
 
    -- draw the text
-   local padding = 6
-
    love.graphics.setColor(dlg.color)
    scissor.set(dlg.x, dlg.y, dlg.width-padding, dlg.height-padding)
    love.graphics.printf(dlg.text, dlg.x+padding, dlg.y+padding, dlg.width-padding)
