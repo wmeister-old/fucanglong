@@ -34,6 +34,15 @@ function texture(name)
    return cache(name, love.graphics.newImage(name))
 end
 
+function spritesheet(name)
+   name = path.spritesheet(name)
+
+   if is_cached(name) then
+      return cache(name)
+   end
+   return cache(name, love.graphics.newImage(name))
+end
+
 function fon(name, size)
    name = path.font.fon(name)
 
