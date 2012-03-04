@@ -15,9 +15,11 @@ function constructor(type, keys, defaults, meta)
       end
       table.has_keys(args, mandatory)
 
-      for k,v in pairs(defaults) do
-	 if not args[k] then
-	    args[k] = v
+      if defaults then
+	 for k,v in pairs(defaults) do
+	    if not args[k] then
+	       args[k] = v
+	    end
 	 end
       end
 
