@@ -1,7 +1,7 @@
 for _,name in ipairs({"dumper", "table"}) do
    dofile(name..".lua")
 end
-for _,mod in ipairs({"cache", "path", "scissor", "colors", "text", "base_table", "entity", "character", "pc", "dialog"}) do
+for _,mod in ipairs({"cache", "path", "scissor", "colors", "text", "base_table", "entity", "sprite", "character", "pc", "dialog"}) do
    require(mod)
 end
 
