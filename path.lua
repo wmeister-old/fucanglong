@@ -20,3 +20,7 @@ end
 function texture(name)
    return resource(png("texture/"..name))
 end
+
+function spritesheet(name)
+   return resource(png("spritesheet/"..name))
+end
