@@ -1,8 +1,13 @@
 module(..., package.seeall)
 
-function constructor(type, keys, defaults, meta)
+function constructor(table_type, keys, defaults, meta, callback)
    return function(args)
       local mandatory = {}
+
+      if not callback and type(meta) == "function" then
+	 callback = meta
+	 meta = nil
+      end
 
       if meta then
 	 setmetatable(args, { __index = meta})
@@ -23,7 +28,11 @@ function constructor(type, keys, defaults, meta)
 	 end
       end
 
-      args.type = type
+      args.table_type = table_type
+
+      if callback then
+	 return callback(args)
+      end
       return args
    end
 end

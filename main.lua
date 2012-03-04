@@ -16,6 +16,8 @@ function love.load()
 		    height = dialog.lines_to_height(3),
 		    text = "Welcome to a new age! This is the world of Fucanglong and you are about to starz your journey... Get ready for the experience of a life time! Welcome to a new age! This is the world of Fucanglong and you are about to start your journey... Get ready for the experience of a life time! Welcome to a new age! This is the world of Fucanglong and you are about to start your journey... Get ready for the experience of a life time! abcd END."}
 
+   pc1 = sprite.new{sheet = 1, x = 20, y = 20, cell_width = 24, cell_height = 24, vpadding = 6, hpadding = 4, cell = {1,1}}
+
 end
 
 function love.update()
@@ -23,7 +25,8 @@ function love.update()
 end
 
 function love.draw()
-   dialog.draw(dlg)
+--   dialog.draw(dlg)
+   sprite.draw(pc1)
 
 --[[   love.graphics.setFont(cache.fon("PixelCarnageMonoCode", 12))
    love.graphics.setFont(love.graphics.newFont("res/font/PixelCarnageMonoCode.fon", 10))
